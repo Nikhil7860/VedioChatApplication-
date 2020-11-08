@@ -1,0 +1,68 @@
+To Create a Vedio calling ZOOM- CLONE 
+
+Project github acess :-> https://github.com/WebDevSimplified/Zoom-Clone-With-WebRTC
+
+
+Step 1 : ->
+
+type on the teminal CMD to get the boler plate to create a server 
+
+npm init -y
+
+Step 2 : ->
+
+type on the teminal CMD to get the dependencies for the project
+
+1.npm i express ejs socket.io
+then wait 
+2.npm i uuid
+then wait    
+3.npm i --save -dev nodemon
+
+make a file named server.js in the ZOOM CLONE 
+
+server.js 
+
+const express = require('express');
+const { Server } = require('http');
+
+const app = express()
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
+const { v4: uuidV4 } = require('uuid')
+
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+
+app.get('/', (req, res) => {
+
+    res.redirect(`/${uuidV4}`)
+
+})
+
+app.get('/:room', (req, res) => {
+
+    res.render('room', { roomId: req.params.room })
+})
+server.listen(3000)
+
+Now to set up connection for making cnnection between 2 people 
+
+PeerJs Library: https://peerjs.com
+
+type on the cmd 
+
+npm i -g peer
+
+get the server of peer running on port 3001
+
+type on cmd  to get the server
+
+peerjs --port 3001
+
+
+----To Run the project-----
+
+view pages are render on local host 3000
+and 
+server is running at local host 3001
